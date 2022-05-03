@@ -10,7 +10,7 @@
 	//FHIR Questionnaire Response JSON template
 	let jsonQR = {
 		resourceType: 'QuestionnaireResponse',
-		//questionnaire: '',
+		questionnaire: 'Questionnaire/196',
 		subject:{
 			reference: ''
 		},
