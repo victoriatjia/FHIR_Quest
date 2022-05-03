@@ -22,17 +22,16 @@
 	//Function Initialization
 	$(document).ready(function(){
 		//Check session
-		// loginData= sessionGet("loginAccount");
-		// if(loginData==null) {
-			// //redirect users to login page
-			// window.location.href = "../login.html";
-		// }
-		// else {
-			// //showWebsiteInfo();
-			// //$("#intro").html("Respondent: " + loginData.person.name);
-			// showForm();
-		// }
-		// Get Question
+		loginData= sessionGet("loginAccount");
+		if(loginData==null) {
+			//redirect users to login page
+			window.location.href = "../login.html";
+		}
+		else {
+			$("#intro").html("Respondent: " + loginData.person.name);
+			showForm();
+		}
+		//Get Question
 		getResource(FHIRURL, 'Questionnaire', '/' + quesID, FHIRResponseType, 'getQuestionnaire');
 	});
 
@@ -121,7 +120,7 @@
 		$('#btn-submit').on('click', function(e) {
 			e.preventDefault();
 			document.getElementById("global-loader").style.display="block";
-			let obj= validate();
+			let obj= validateData();
 			if(obj != 0)
 			{
 				let str= JSON.stringify(obj);
@@ -162,7 +161,7 @@
 	}
 
 
-	function validate()
+	function validateData()
 	{
 		let checkboxes = $('input:checkbox:checked');
 		if(checkboxes.length > 0)
@@ -173,8 +172,8 @@
 				return 0;
 			}
 			else{
-				jsonQR.subject.reference= "Person/178"; //+ loginData.person.id;
-				jsonQR.subject.display= "tes";//loginData.person.name;
+				jsonQR.subject.reference= "Person/" + loginData.person.id;
+				jsonQR.subject.display= loginData.person.name;
 				jsonQR.authored= getDate() + 'T' + getTime();
 				$('input:checkbox:checked').each(function () {
 					let temp={
