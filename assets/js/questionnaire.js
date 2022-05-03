@@ -141,7 +141,7 @@
 		}
 		else
 		{
-			swal('Error!', "There is an error while sending message.\nPlease contact victoriatjiaa@gmail.com", 'error');
+			swal('Error!', "There is an error while sending message.\nPlease contact victoriatjiaa@gmail.com\nThank you :)", 'error');
 		}
 		document.getElementById("questionnaireForm").reset();
 		replaceClass('validationTextarea', 'is-valid', 'is-invalid');
@@ -189,7 +189,7 @@
 		}
 		else
 		{
-			swal('Error!', "as\nAt least one checkbox must be selected!", 'error');
+			swal('Error!', "At least one checkbox must be selected!", 'error');
 			return 0;
 		}
 	}
