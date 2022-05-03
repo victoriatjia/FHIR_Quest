@@ -25,7 +25,7 @@
 		loginData= sessionGet("loginAccount");
 		if(loginData==null) {
 			//redirect users to login page
-			window.location.href = "../login.html";
+			//window.location.href = "../login.html";
 		}
 		else {
 			$("#intro").html("Respondent: " + loginData.person.name);
