@@ -31,8 +31,6 @@
 		else {
 			getResource(FHIRURL, 'Questionnaire', '/' + quesID, FHIRResponseType, 'getQuestionnaire');
 		}
-		
-		getResource(FHIRURL, 'Questionnaire', '/' + quesID, FHIRResponseType, 'getQuestionnaire');
 	});
 
 	function getQuestionnaire(str)
