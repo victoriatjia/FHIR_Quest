@@ -24,13 +24,15 @@
 		//Check session
 		loginData= getQueryString();
 		//loginData= sessionGet("loginAccount");
-		if(loginData==null) {
-			//redirect users to login page
-			window.location.href = "https://victoriatjia.github.io/FHIR_LMS/LIVE/MISAC/login.html";
-		}
-		else {
-			getResource(FHIRURL, 'Questionnaire', '/' + quesID, FHIRResponseType, 'getQuestionnaire');
-		}
+		// if(loginData==null) {
+			// //redirect users to login page
+			// window.location.href = "https://victoriatjia.github.io/FHIR_LMS/LIVE/MISAC/login.html";
+		// }
+		// else {
+			// getResource(FHIRURL, 'Questionnaire', '/' + quesID, FHIRResponseType, 'getQuestionnaire');
+		// }
+		
+		getResource(FHIRURL, 'Questionnaire', '/' + quesID, FHIRResponseType, 'getQuestionnaire');
 	});
 
 	function getQuestionnaire(str)
@@ -135,11 +137,11 @@
 		document.getElementById("global-loader").style.display="none";
 		if(retValue(obj))
 		{
-			swal('Finished!', "Form submitted! Thank you for your participation", 'success');
+			swal('Form submitted!', "Thank you for your participation!", 'success');
 		}
 		else
 		{
-			swal('Error!', "Submit failed! Please contact your system administrator", 'error');
+			swal('Error!', "There is an error while sending message.\nPlease contact victoriatjiaa@gmail.com", 'error');
 		}
 		document.getElementById("questionnaireForm").reset();
 		replaceClass('validationTextarea', 'is-valid', 'is-invalid');
@@ -164,7 +166,7 @@
 		{
 			if($('#opt12')[0].checked && !$("#validationTextarea").val())
 			{
-				swal('Error!', "Textarea must be filled since Others option is selected!", 'error');
+				swal('Error!', "Please fill out the textarea field!", 'error');
 				return 0;
 			}
 			else{
@@ -187,7 +189,7 @@
 		}
 		else
 		{
-			swal('Error!', "At least one checkbox must be selected!", 'error');
+			swal('Error!', "as\nAt least one checkbox must be selected!", 'error');
 			return 0;
 		}
 	}
