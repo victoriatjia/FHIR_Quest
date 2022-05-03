@@ -1,6 +1,7 @@
 	let quesID= '196';
 	let quesTitle;
 	let quesItem= [];
+	let loginData;
 	
 	// ["IoT and Tel-healthcare", "Healthcare chart and form", "Medical image and structured reporting", "Colonic disease healthcare", "Cancer",
 	   // "Virtual slide and multimedia", "Genomics", "Workflow management and auditing", "Financial and accounting", "Clinical Decision Support", 
@@ -11,8 +12,7 @@
 		resourceType: 'QuestionnaireResponse',
 		//questionnaire: '',
 		subject:{
-			reference: '',
-			display: ''
+			reference: ''
 		},
 		authored: '',
 		status: 'completed',
@@ -22,17 +22,15 @@
 	//Function Initialization
 	$(document).ready(function(){
 		//Check session
-		loginData= sessionGet("loginAccount");
+		loginData= getQueryString();
+		//loginData= sessionGet("loginAccount");
 		if(loginData==null) {
 			//redirect users to login page
-			//window.location.href = "../login.html";
+			window.location.href = "https://victoriatjia.github.io/FHIR_LMS/LIVE/MISAC/login.html";
 		}
 		else {
-			$("#intro").html("Respondent: " + loginData.person.name);
-			showForm();
+			getResource(FHIRURL, 'Questionnaire', '/' + quesID, FHIRResponseType, 'getQuestionnaire');
 		}
-		//Get Question
-		getResource(FHIRURL, 'Questionnaire', '/' + quesID, FHIRResponseType, 'getQuestionnaire');
 	});
 
 	function getQuestionnaire(str)
@@ -96,8 +94,6 @@
 			temp+= `<button id="btn-submit" class="btn btn-primary mt-4 mb-0" onclick="submitForm()">Submit</button>`;
 		});
 		
-		//<input type="submit" value="Submit" class="btn btn-primary mt-4 mb-0">`;
-		//<textarea class="form-control mb-4 is-valid state-valid" placeholder="Textarea (success state)" required="" rows="3">This is textarea</textarea>
 		$(".page-title:eq(0)").html(quesTitle);
 		$(".col-md-12:eq(0)").html(temp);
 		
@@ -172,8 +168,7 @@
 				return 0;
 			}
 			else{
-				jsonQR.subject.reference= "Person/" + loginData.person.id;
-				jsonQR.subject.display= loginData.person.name;
+				jsonQR.subject.reference= "Person/" + loginData.personID;
 				jsonQR.authored= getDate() + 'T' + getTime();
 				$('input:checkbox:checked').each(function () {
 					let temp={
