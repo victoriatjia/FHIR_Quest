@@ -24,13 +24,13 @@
 		//Check session
 		loginData= getQueryString();
 		//loginData= sessionGet("loginAccount");
-		// if(loginData==null) {
-			// //redirect users to login page
-			// window.location.href = "https://victoriatjia.github.io/FHIR_LMS/LIVE/MISAC/login.html";
-		// }
-		// else {
-			// getResource(FHIRURL, 'Questionnaire', '/' + quesID, FHIRResponseType, 'getQuestionnaire');
-		// }
+		if(loginData==null) {
+			//redirect users to login page
+			window.location.href = "https://victoriatjia.github.io/FHIR_LMS/LIVE/MISAC/login.html";
+		}
+		else {
+			getResource(FHIRURL, 'Questionnaire', '/' + quesID, FHIRResponseType, 'getQuestionnaire');
+		}
 		
 		getResource(FHIRURL, 'Questionnaire', '/' + quesID, FHIRResponseType, 'getQuestionnaire');
 	});
