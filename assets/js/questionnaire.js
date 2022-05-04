@@ -3,14 +3,10 @@
 	let quesItem= [];
 	let loginData;
 	
-	// ["IoT and Tel-healthcare", "Healthcare chart and form", "Medical image and structured reporting", "Colonic disease healthcare", "Cancer",
-	   // "Virtual slide and multimedia", "Genomics", "Workflow management and auditing", "Financial and accounting", "Clinical Decision Support", 
-	   // "Security", "Others"]
-	   
 	//FHIR Questionnaire Response JSON template
 	let jsonQR = {
 		resourceType: 'QuestionnaireResponse',
-		questionnaire: 'Questionnaire/196',
+		questionnaire: 'Questionnaire/' + quesID,
 		subject:{
 			reference: ''
 		},
